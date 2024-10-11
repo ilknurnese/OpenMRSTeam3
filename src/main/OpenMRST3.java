@@ -166,7 +166,9 @@ public class OpenMRST3 extends BaseDriver {
     //yusuf
     @Test
     public void US_406() throws IOException {
+        Login();
         elements.findPatient.click();
+
 
         System.out.println("               ***************>>PATIENTS LIST<<***************");
 
@@ -198,6 +200,7 @@ public class OpenMRST3 extends BaseDriver {
 
     @Test(dataProvider = "createData")//yusuf 10 user story
     public void US_410(String userName) throws IOException {
+        Login();
 
 
         elements.language.click();
@@ -230,8 +233,61 @@ public class OpenMRST3 extends BaseDriver {
         return user;
     }
 
+    @Test
+    public void US_404_ (){
 
+        driver.get("https://openmrs.org/");
+        elements.languageS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.englishS));
+        elements.englishS.click();
+        elements.demobuttonS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.enterDemo2S)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.usernameS)).sendKeys("admin");
+        elements.passwordS.sendKeys("Admin123");
+        elements.locationS.click();
+        elements.loginButtonS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.Registerapatient)).click();
+        elements.givenName.sendKeys("sefacan");
+        elements.familyName.sendKeys("basoglu");
+        elements.nextbutton.click();
+        elements.gender.click();
+        elements.nextbutton.click();
+        elements.birthdateDay.sendKeys("24");
+        elements.birthdateMonth.click();
+        elements.birthdateMonth6.click();
+        elements.birthdateYear.sendKeys("2004");
+        elements.nextbutton.click();
+        elements.address.sendKeys("elma sokak");
+        elements.nextbutton.click();
+        elements.nextbutton.click();
+        elements.nextbutton.click();
+        elements.Confirm.click();
+        Assert.assertTrue(elements.patieentname.getText().equals("sefacan"),"Hasta kaydedilemedi");
 
+    }
+    @Test
+    public void US_407_(){
+
+        driver.get("https://openmrs.org/");
+        elements.languageS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.englishS));
+        elements.englishS.click();
+        elements.demobuttonS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.enterDemo2S)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.usernameS)).sendKeys("admin");
+        elements.passwordS.sendKeys("Admin123");
+        elements.locationS.click();
+        elements.loginButtonS.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.FindPatientRecord)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.Search));
+        elements.Search.sendKeys("sefacan");
+        elements.one.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.delete)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.text));
+        elements.text.sendKeys("faulty patient");
+        elements.Confirmdelete.click();
+
+}
 }
 
 

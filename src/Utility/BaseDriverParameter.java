@@ -1,9 +1,11 @@
 package Utility;
 
+import main.Elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -33,6 +35,7 @@ public class BaseDriverParameter {
        wait=new WebDriverWait(driver,Duration.ofSeconds(20));
        Login();
     }
+
     @AfterClass
     public void kapanisIslemleri()
     {
@@ -43,8 +46,13 @@ public class BaseDriverParameter {
     }
     public void Login()
     {
+        Elements elements = new Elements();
         driver.get("https://openmrs.org/");
         Tools.Bekle(2);
-
+        wait.until(ExpectedConditions.elementToBeClickable(elements.username));
+        elements.username.sendKeys("admin");
+        elements.password.sendKeys("Admin123");
+        elements.location.click();
+        elements.login.click();
     }
 }
