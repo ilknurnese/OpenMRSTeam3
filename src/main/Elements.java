@@ -173,4 +173,96 @@ public class Elements {
     public WebElement giris;
 
 // muhammet Elelmentler
+
+    @FindBy(css = "[class='gt-current-lang']")
+    public WebElement languageS;
+
+    @FindBy(xpath = "//a[@data-gt-lang='en']")
+    public WebElement englishS;
+
+    @FindBy(xpath = "//a[@class='zak-button']")
+    public WebElement demobuttonS;
+
+    @FindBy(linkText="Enter the OpenMRS 2 Demo")
+    public WebElement enterDemo2S;
+
+    @FindBy(id="username")
+    public WebElement usernameS;
+
+    @FindBy(id="password")
+    public WebElement passwordS;
+
+    @FindBy(id="Inpatient Ward")
+    public WebElement locationS;
+
+    @FindBy(id="loginButton")
+    public WebElement loginButtonS;
+
+    @FindBy(xpath="(//a[@class='btn btn-default btn-lg button app big align-self-center'])[4]")
+    public WebElement Registerapatient;
+
+    @FindBy(name="givenName")
+    public WebElement givenName;
+
+    @FindBy(name = "familyName")
+    public WebElement familyName;
+
+    @FindBy(id = "next-button")
+    public WebElement nextbutton;
+
+    @FindBy(xpath = "//option[@value='M']")
+    public  WebElement gender;
+
+    @FindBy(name = "birthdateDay")
+    public WebElement  birthdateDay;
+
+    @FindBy(name = "birthdateMonth")
+    public WebElement birthdateMonth;
+
+    @FindBy(xpath = "//option[@value='6']")
+    public WebElement birthdateMonth6;
+
+    @FindBy(name = "birthdateYear")
+    public WebElement birthdateYear;
+
+    @FindBy(id = "address1")
+    public WebElement address;
+
+    @FindBy(id = "submit")
+    public WebElement Confirm;
+
+    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[1]")
+    public WebElement FindPatirndRecord;
+
+    @FindBy(xpath = "//input[@class='form-control']")
+    public WebElement Search;
+
+    @FindBy(xpath = "(//div[@class='col-11 col-lg-10'])[8]")
+    public WebElement DeletePatiend;
+
+    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[1]")
+    public WebElement FindPatientRecord;
+
+    @FindBy(xpath = "//tr[@class='odd']")
+    public WebElement one;
+
+    @FindBy(xpath = "(//div[@class='col-11 col-lg-10'])[8]")
+    public WebElement delete;
+
+    @FindBy(id = "delete-reason")
+    public WebElement text;
+
+    @FindBy(xpath = "(//button[@class='confirm right'])[6]")
+    public WebElement Confirmdelete;
+
+    @FindBy(xpath = "//span[@class='PersonName-givenName']")
+    public WebElement patieentname;
+
+
+
+
+
+
+
+    //sefacan
 }
