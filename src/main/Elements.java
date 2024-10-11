@@ -115,4 +115,28 @@ public class Elements {
 
     //US2-US9-BETUL
 
+
+    @FindBy(id = "appointmentschedulingui-homeAppLink-appointmentschedulingui-homeAppLink-extension")
+    public WebElement appoinmentsButton;
+
+    @FindBy(id = "appointmentschedulingui-manageAppointments-app")
+    public WebElement manageAppoiments;
+
+    @FindBy(id = "patient-search")
+    public WebElement searchhPatiens;
+
+    @FindBy(xpath = "//tbody/tr/td[1]")
+    public List<WebElement> clickpatient;
+
+
+    @FindBy(xpath = "(//div[@class='note error'])[2]")
+    public WebElement erorMesage;
+
+    @FindBy(xpath = "//td[text()='yusuf ucucu']")
+    public WebElement patientid;
+
+    @FindBy(css = "[class='logo']")
+    public WebElement logo;
+//yusuf 09
+
 }
