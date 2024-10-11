@@ -18,7 +18,7 @@ public class BaseDriver {
     @BeforeClass
     public void BaslangicIslemleri()
     {
-        createlog.info("loging is start");
+        createlog.info("logging started");
 
         driver=new ChromeDriver();
        createlog.info("driver is starting");

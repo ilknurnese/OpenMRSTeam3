@@ -84,18 +84,32 @@ public class OpenMRST3 extends BaseDriver {
         pom.merge.click();
     }
 
-    @Test //yusuf giris
-    public void US_401() throws IOException {
+    @Test(dataProvider = "loginData") //yusuf giris
+    public void US_401(String username, String password) throws IOException {
 
         elements.language.click();
         wait.until(ExpectedConditions.elementToBeClickable(elements.english)).click();
         elements.demobuttun.click();
         elements.enterDemo2.click();
-        elements.username.sendKeys("admin");
-        elements.password.sendKeys("Admin123");
+        elements.username.sendKeys(username);
+        elements.password.sendKeys(password);
         elements.location.click();
         elements.loginButton.click();
     }
+
+    @DataProvider
+    Object [][] loginData() {
+        Object[][] loginInfo = {
+                {"", ""},
+                {"", "wrong_password"},
+                {"admin", ""},
+                {"admin", "wrong_password"},
+                {"", "Admin123"},
+                {"admin", "Admin123"},
+        };
+        return loginInfo;
+    }
+
     //yusuf
     @Test
     public void US_406() throws IOException {
@@ -162,6 +176,8 @@ public class OpenMRST3 extends BaseDriver {
         Object[] user = {"yusuf ucucu"};
         return user;
     }
+
+
 
 }
 
