@@ -139,4 +139,38 @@ public class Elements {
     public WebElement logo;
 //yusuf 09
 
+
+// Muhammet Elementleri
+
+    @FindBy(xpath = "//input[@id='username']")
+    public WebElement username1;
+
+    @FindBy(xpath = "//input[@id='password']")
+    public WebElement password1;
+
+    @FindBy(xpath = "//*[@id='Inpatient Ward']")
+    public WebElement ward;
+
+    @FindBy(xpath = "//*[@id='loginButton']")
+    public WebElement login;
+
+    @FindBy(xpath = "//*[@id='coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension']")
+    public WebElement FindPatiRecord;
+
+    @FindBy(xpath = "//*[text()='Showing 16 to 27 of 27 entries']")
+    public WebElement showing;
+
+    @FindBy(xpath = "//*[@id='patient-search-results-table_next']")
+    public WebElement sayfa2;
+
+    @FindBy(xpath = "//*[@id='selected-location']")
+    public WebElement displayd;
+
+    @FindBy(xpath = "//div[@id='navbarSupportedContent']//li[@class='nav-item logout']/a")
+    public WebElement logout;
+
+    @FindBy(xpath = "//*[@class='w-auto']")
+    public WebElement giris;
+
+// muhammet Elelmentler
 }

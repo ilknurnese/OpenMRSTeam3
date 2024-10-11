@@ -8,12 +8,63 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
 
 public class OpenMRST3 extends BaseDriver {
     Elements elements = new Elements();
+
+    @Test
+    public void Test403(){
+
+        driver.get("https://demo.openmrs.org/openmrs/login.htm");
+
+        SoftAssert softAssert = new SoftAssert();
+
+        elements.username1.sendKeys("Admin");
+        elements.password1.sendKeys("Admin123");
+        elements.ward.click();
+        elements.login.click();
+
+        softAssert.assertTrue(elements.displayd.isDisplayed(),"Aradığınız bulunmamaktadır");
+
+        elements.logout.click();
+
+        softAssert.assertTrue(elements.giris.isDisplayed(),"Giriş sayfasına gelemediniz");
+
+        softAssert.assertAll();
+
+
+
+    }
+
+    @Test
+    public void Test408(){
+
+        driver.get("https://demo.openmrs.org/openmrs/login.htm");
+
+
+        elements.username1.sendKeys("Admin");
+        elements.password1.sendKeys("Admin123");
+        elements.ward.click();
+        elements.login.click();
+        elements.FindPatiRecord.click();
+        elements.sayfa2.click();
+
+        String deger = elements.showing.getText().toString();
+
+        String[] dizideger = deger.split(" ");
+        String degerZ = dizideger[dizideger.length-2];
+        String degerY = dizideger[dizideger.length-4];
+
+        Assert.assertEquals(degerZ,degerY,"Girdiğiniz değerler aynı değil");
+
+
+
+    }
+
 
     @Test()
     public void US_402() { //betulun testi
