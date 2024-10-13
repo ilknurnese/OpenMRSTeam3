@@ -29,7 +29,7 @@ public class BaseDriverParameter {
             default:driver=new ChromeDriver();
         }
 
-      driver=new ChromeDriver();
+       driver=new ChromeDriver();
        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
        wait=new WebDriverWait(driver,Duration.ofSeconds(20));
@@ -39,7 +39,7 @@ public class BaseDriverParameter {
     @AfterClass
     public void kapanisIslemleri()
     {
-      Tools.Bekle(3);
+      Tools.wait(3);
       driver.quit();
 
 
@@ -48,7 +48,7 @@ public class BaseDriverParameter {
     {
         Elements elements = new Elements();
         driver.get("https://openmrs.org/");
-        Tools.Bekle(2);
+        Tools.wait(2);
         wait.until(ExpectedConditions.elementToBeClickable(elements.username));
         elements.username.sendKeys("admin");
         elements.password.sendKeys("Admin123");

@@ -12,147 +12,33 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.Executor;
+
 
 public class OpenMRST3 extends BaseDriver {
+
     Elements elements = new Elements();
 
-    @Test
-    public void Test403(){
-        // muhammet
-
-        driver.get("https://demo.openmrs.org/openmrs/login.htm");
-
-        SoftAssert softAssert = new SoftAssert();
-
-        elements.username1.sendKeys("Admin");
-        elements.password1.sendKeys("Admin123");
-        elements.ward.click();
-        elements.login.click();
-
-        softAssert.assertTrue(elements.displayd.isDisplayed(),"Aradığınız bulunmamaktadır");
-
-        elements.logout.click();
-
-        softAssert.assertTrue(elements.giris.isDisplayed(),"Giriş sayfasına gelemediniz");
-
-        softAssert.assertAll();
-
-
-
-    }
-
-    @Test
-    public void Test408(){
-        // muhammet
-
-        driver.get("https://demo.openmrs.org/openmrs/login.htm");
-
-
-        elements.username1.sendKeys("Admin");
-        elements.password1.sendKeys("Admin123");
-        elements.ward.click();
-        elements.login.click();
-        elements.FindPatiRecord.click();
-        elements.sayfa2.click();
-
-        String deger = elements.showing.getText().toString();
-
-        String[] dizideger = deger.split(" ");
-        String degerZ = dizideger[dizideger.length-2];
-        String degerY = dizideger[dizideger.length-4];
-
-        Assert.assertEquals(degerZ,degerY,"Girdiğiniz değerler aynı değil");
-
-
-
-    }
-
-
-    @Test()
-    public void US_402() { //betulun testi
-        Elements el = new Elements();
-        el.dil.click();
-
-        Tools.Bekle(2);
-        el.en.click();
-
-        Tools.Bekle(2);
-
-        el.demobutton.click();
-        el.enter.click();
-        el.username.sendKeys("admin");
-        el.password.sendKeys("Admin123");
-        el.location.click();
-        el.loginbutton.click();
-        Assert.assertTrue(el.adminassertion.getText().contains("admin"), "login olunmamıştır");
-    }
-
-    @Test()
-    public void US_405() { //betulun testi
-        Elements el = new Elements();
-        el.dil.click();
-
-        Tools.Bekle(2);
-        el.en.click();
-
-        Tools.Bekle(2);
-
-        el.demobutton.click();
-        el.enter.click();
-        el.username.sendKeys("admin");
-        el.password.sendKeys("Admin123");
-        el.location.click();
-        el.loginbutton.click();
-        Assert.assertTrue(el.adminassertion.getText().contains("admin"), "login olunmamıştır");
-        el.myaccountadmin.click();
-        el.myaccount.click();
-    }
-
-    @Test()// betulun testi
-    public void US_409() {
-        Elements pom = new Elements();
-        pom.dil.click();
-
-        Tools.Bekle(2);
-        pom.en.click();
-
-        Tools.Bekle(2);
-
-        pom.demobutton.click();
-        pom.enter.click();
-        pom.username.sendKeys("admin");
-        pom.password.sendKeys("Admin123");
-        pom.location.click();
-        pom.loginbutton.click();
-        Assert.assertTrue(pom.adminassertion.getText().contains("admin"), "login olunmamıştır");
-        pom.avtivevisits.click();
-        pom.ayse.click();
-        pom.mergevisit.click();
-
-        for (int i = 0; i < 2; i++) {
-            wait.until(ExpectedConditions.elementToBeClickable(pom.visiteler.get(i)));
-            pom.visiteler.get(i).click();
-        }
-
-        pom.merge.click();
-    }
-
-    @Test(dataProvider = "loginData") //yusuf giris
+    //nese
+    @Test(dataProvider = "loginData", enabled = false, priority = 1)
     public void US_401(String username, String password) throws IOException {
 
-        elements.language.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.english)).click();
-        elements.demobuttun.click();
-        elements.enterDemo2.click();
-        elements.username.sendKeys(username);
+        Elements elements = new Elements();
+
+        // Kullanıcı adı ve şifre giriş işlemi
+        wait.until(ExpectedConditions.elementToBeClickable(elements.username));
         elements.password.sendKeys(password);
         elements.location.click();
         elements.loginButton.click();
+
+        Tools.wait(3);
     }
 
     @DataProvider
-    Object [][] loginData() {
-        Object[][] loginInfo = {
+    Object[][] loginData() {
+
+        Object[][] loginInfo;
+        loginInfo = new Object[][]{
                 {"", ""},
                 {"", "wrong_password"},
                 {"admin", ""},
@@ -163,22 +49,95 @@ public class OpenMRST3 extends BaseDriver {
         return loginInfo;
     }
 
+    @Test(enabled = false, priority = 2)
+    public void US_402() { //betulun testi
+
+        login();
+        Elements elements = new Elements();
+        Assert.assertTrue(elements.logo.isDisplayed(), "HATALI GİRİŞ");
+    }
+
+    //muhammet
+    @Test(enabled = false, priority = 3)
+    public void Test403() {
+
+        login();
+        SoftAssert softAssert = new SoftAssert();
+        elements = new Elements();
+        wait.until(ExpectedConditions.visibilityOf(elements.logout));
+        softAssert.assertTrue(elements.logout.isDisplayed(), "Aradığınız bulunmamaktadır");
+        elements.logout.click();
+        softAssert.assertTrue(elements.giris.isDisplayed(), "Giriş sayfasına gelemediniz");
+        softAssert.assertAll();
+
+    }
+
+    @Test(enabled = false, priority = 4)
+    public void US_404_() {
+
+        Elements elements = new Elements();
+        login();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.registerAPatient)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.givenName)).sendKeys("sefacan");
+        elements.familyName.sendKeys("basoglu");
+        elements.nextButton.click();
+        elements.gender.click();
+        elements.nextButton.click();
+        elements.birthdateDay.sendKeys("24");
+        elements.birthdateMonth.click();
+        elements.birthdateMonth6.click();
+        elements.birthdateYear.sendKeys("2004");
+        elements.nextButton.click();
+        elements.address.sendKeys("elma sokak");
+        elements.nextButton.click();
+        elements.nextButton.click();
+        elements.nextButton.click();
+        elements.confirm.click();
+        Assert.assertEquals(elements.patientName.getText(), "sefacan", "Hasta kaydedilemedi");
+
+    }
+
+    //betul
+    @Test(enabled = false, priority = 5)
+    public void US_405() {
+
+        login();
+        Elements elements = new Elements();
+
+        Assert.assertTrue(elements.adminLabel.getText().contains("admin"), "login olunmamıştır");
+
+        elements.adminLabel.click();
+        elements.myAccount.click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.changePasswordButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.cancelButton)).click();
+        Assert.assertTrue(elements.changePasswordButton.isDisplayed(), "Change Password Button was not displayed!");
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.myLanguagesButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.cancelButton)).click();
+        Assert.assertTrue(elements.myLanguagesButton.isDisplayed(), "My Languages Button was not displayed!");
+
+    }
+
     //yusuf
-    @Test
+    @Test(enabled = false, priority = 6)
     public void US_406() throws IOException {
-        Login();
-        elements.findPatient.click();
+        login();
 
+        Elements elements = new Elements();
 
+        wait.until(ExpectedConditions.elementToBeClickable(elements.findPatient)).click();
         System.out.println("               ***************>>PATIENTS LIST<<***************");
-
         for (
                 WebElement ptnt : elements.patientsIdlist)
             System.out.println(ptnt.getText());
 
-        if (elements.patientsIdlist.size() > 0)
-            elements.patientsIdlist.get(0).click();
-        else System.out.println("Hasta Listesi Bos");
+        if (elements.patientsIdlist.size() > 0) {
+            Tools.wait(7);
+            wait.until(ExpectedConditions.elementToBeClickable(elements.patientsIdlist.get(0))).click();
+            Tools.wait(7);
+        } else System.out.println("Patient List is Empty!");
 
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[id='body-wrapper']")));
@@ -189,24 +148,144 @@ public class OpenMRST3 extends BaseDriver {
 
         driver.navigate().back();
         elements.searchByIdorName.sendKeys("techno" + Keys.ENTER);
-        Assert.assertTrue(elements.nosucpapient.isEnabled(), "Listede olmayan Kisi icin Sistem calisti");
-        System.out.println("Hasta Bulunamadi Mesaji = " + elements.nosucpapient.getText());
+        Assert.assertTrue(elements.nosucpapient.isEnabled(), "The patient was not found!");
+        System.out.println("The patient was not found! = " + elements.nosucpapient.getText());
 
-        TakesScreenshot takefoto = (TakesScreenshot) driver;
-        File screenshot = new File("target/screnshott/sayfa1.jpg");
-        File picture = takefoto.getScreenshotAs(OutputType.FILE);
+        TakesScreenshot takePhoto = (TakesScreenshot) driver;
+        File screenshot = new File("target/screenShot/SS1.jpg");
+        File picture = takePhoto.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(picture, screenshot);
     }
 
-    @Test(dataProvider = "createData")//yusuf 10 user story
+    //sefacan
+    @Test(enabled = false, priority = 7)
+    public void US_407_() {
+
+        Elements elements = new Elements();
+        login();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.findPatientRecord)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.search));
+        elements.search.sendKeys("sefacan");
+        elements.one.click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.delete)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.text));
+        elements.text.sendKeys("faulty patient");
+        elements.confirmDelete.click();
+
+    }
+
+
+    //muhammet
+    @Test(enabled = false, priority = 8)
+    public void Test408() {
+
+        login();
+        Elements elements = new Elements();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.findPatient)).click();
+        elements.patientListNextPage.click();
+
+        wait.until(ExpectedConditions.visibilityOf(elements.showing));
+        String entriesAmount = elements.showing.getText();
+
+        String[] valueArray = entriesAmount.split(" ");
+        String valueZ = valueArray[valueArray.length - 2];
+        String valueY = valueArray[valueArray.length - 4];
+
+        Assert.assertEquals(valueZ, valueY, "The number of rows is different than the patient table.");
+
+    }
+
+    //betul
+    @Test(enabled = true, priority = 9)
+    public void US_409() {
+
+        login();
+        Elements elements = new Elements();
+
+        int counter = 0;
+        String registeredPatientId100="";
+        String registeredPatientId200="";
+
+        for (int i = 1; i <= 2; i++) {
+
+            wait.until(ExpectedConditions.elementToBeClickable(elements.registerAPatient)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(elements.givenName)).sendKeys("We_Team3");
+            elements.familyName.sendKeys("We_Team3");
+            elements.nextButton.click();
+            elements.gender.click();
+            elements.nextButton.click();
+            elements.birthdateDay.sendKeys("24");
+            elements.birthdateMonth.click();
+            //100k26
+            //100k7v
+
+            elements.birthdateMonth6.click();
+            elements.birthdateYear.sendKeys("2004");
+            elements.nextButton.click();
+            elements.address.sendKeys("Elm Street");
+            elements.nextButton.click();
+            elements.nextButton.click();
+            elements.nextButton.click();
+            elements.confirm.click();
+
+            if (counter == 0) {
+                wait.until(ExpectedConditions.visibilityOf(elements.registeredPatientId));
+                registeredPatientId100 = elements.registeredPatientId.getText();
+                //elements.registeredPatientId1.sendKeys(registeredPatientId1);
+                counter++;
+            }
+            else
+            {
+                wait.until(ExpectedConditions.visibilityOf(elements.registeredPatientId));
+                registeredPatientId200 = elements.registeredPatientId.getText();
+            }
+            Assert.assertEquals(elements.patientName.getText(), "We_Team3", "Patient was not recorded!");
+            elements.logo.click();
+        }
+        wait.until(ExpectedConditions.elementToBeClickable(elements.dataManagementButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.mergePatient)).click();
+
+        //wait.until(ExpectedConditions.elementToBeClickable(elements.patientId1Input)).sendKeys(registeredPatientId100);
+        elements.patientId1Input.sendKeys(registeredPatientId100);
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.patientId2Input)).sendKeys(registeredPatientId200);
+
+        elements.confirmButtonPatientMerge.click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.confirmButtonPatientMerge)).click();
+
+        elements.confirmButtonPatientMerge.click();
+        elements.confirmButtonPatientMerge.click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.confirmButtonPatientMerge)).click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.mergingCannotBeUndoneText));
+
+        Assert.assertTrue(elements.mergingCannotBeUndoneText.isDisplayed(),"Error");
+
+        JavascriptExecutor js= (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();",elements.confirmButtonPatientMerge);
+        js.executeScript("arguments[0].scrollIntoView(true);",elements.confirmButtonPatientMerge);
+        js.executeScript("windows.scrollBy(100,100)",elements.confirmButtonPatientMerge);
+
+//        driver.switchTo().frame(0);
+        wait.until(ExpectedConditions.elementToBeClickable(elements.selectedPatientID)).click();
+//        driver.switchTo().parentFrame();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
+
+        Assert.assertTrue(elements.registeredPatientId.isDisplayed(),"Error");
+
+    }
+
+    @Test(dataProvider = "createData", enabled = false)//yusuf 10 user story
     public void US_410(String userName) throws IOException {
-        Login();
 
-
-        elements.language.click();
+        //Elements elements = null;
+        elements.languageOption.click();
         wait.until(ExpectedConditions.elementToBeClickable(elements.english)).click();
-        elements.demobuttun.click();
-        elements.enterDemo2.click();
+        elements.demoButton.click();
+        elements.enterMrs2Demo.click();
         elements.username.sendKeys("admin");
         elements.password.sendKeys("Admin123");
         elements.location.click();
@@ -227,67 +306,14 @@ public class OpenMRST3 extends BaseDriver {
         FileUtils.copyFile(picture, shot);
         elements.logo.click();
     }
+
     @DataProvider
     public Object[] createData() {
         Object[] user = {"yusuf ucucu"};
         return user;
     }
 
-    @Test
-    public void US_404_ (){
 
-        driver.get("https://openmrs.org/");
-        elements.languageS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.englishS));
-        elements.englishS.click();
-        elements.demobuttonS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.enterDemo2S)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.usernameS)).sendKeys("admin");
-        elements.passwordS.sendKeys("Admin123");
-        elements.locationS.click();
-        elements.loginButtonS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.Registerapatient)).click();
-        elements.givenName.sendKeys("sefacan");
-        elements.familyName.sendKeys("basoglu");
-        elements.nextbutton.click();
-        elements.gender.click();
-        elements.nextbutton.click();
-        elements.birthdateDay.sendKeys("24");
-        elements.birthdateMonth.click();
-        elements.birthdateMonth6.click();
-        elements.birthdateYear.sendKeys("2004");
-        elements.nextbutton.click();
-        elements.address.sendKeys("elma sokak");
-        elements.nextbutton.click();
-        elements.nextbutton.click();
-        elements.nextbutton.click();
-        elements.Confirm.click();
-        Assert.assertTrue(elements.patieentname.getText().equals("sefacan"),"Hasta kaydedilemedi");
-
-    }
-    @Test
-    public void US_407_(){
-
-        driver.get("https://openmrs.org/");
-        elements.languageS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.englishS));
-        elements.englishS.click();
-        elements.demobuttonS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.enterDemo2S)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.usernameS)).sendKeys("admin");
-        elements.passwordS.sendKeys("Admin123");
-        elements.locationS.click();
-        elements.loginButtonS.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.FindPatientRecord)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.Search));
-        elements.Search.sendKeys("sefacan");
-        elements.one.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.delete)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.text));
-        elements.text.sendKeys("faulty patient");
-        elements.Confirmdelete.click();
-
-}
 }
 
 

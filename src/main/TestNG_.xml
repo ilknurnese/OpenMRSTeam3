@@ -2,13 +2,18 @@
 
 <suite name="My Suite">
     <test name="My Test 1">
+       <!--
         <parameter name="searchText"></parameter>
-
+-->
         <classes>
-            <class name="main.OpenMRST3"></class>
+            <class name="main.OpenMRST3">
+
+            </class>
         </classes>
+
     </test>
 
+    <!--
     <test name="My Test 2">
         <parameter name="searchText"></parameter>
 
@@ -16,5 +21,6 @@
             <class name="main.OpenMRST3"></class>
         </classes>
     </test>
+    -->
 
 </suite>

@@ -9,23 +9,19 @@ import java.util.List;
 
 public class Elements {
 
-
     public Elements() {
 
         PageFactory.initElements(BaseDriver.driver, this);
     }
 
     @FindBy(css = "[class='gt-current-lang']")
-    public WebElement language;
+    public WebElement languageOption;
 
     @FindBy(css = "[data-gt-lang='en']")
     public WebElement english;
 
-    @FindBy(css = "[class='zak-button']")
-    public WebElement demobuttun;
-
     @FindBy(linkText = "Enter the OpenMRS 2 Demo")
-    public WebElement enterDemo2;
+    public WebElement enterMrs2Demo;
 
     @FindBy(id = "username")
     public WebElement username;
@@ -59,9 +55,7 @@ public class Elements {
 
     @FindBy(xpath = "//td[text()='No matching records found']")
     public WebElement nosucpapient;
-
-
-
+    
 //Yusufun locatorlari
 
     @FindBy(xpath="//*[@class='gt-lang-code']")
@@ -71,7 +65,7 @@ public class Elements {
     public WebElement en;
 
     @FindBy(css = "[class='zak-button']")
-    public WebElement demobutton;
+    public WebElement demoButton;
 
     @FindBy(xpath = "//*[text()='Enter the OpenMRS 2 Demo']")
     public WebElement enter;
@@ -88,9 +82,9 @@ public class Elements {
     @FindBy(xpath = "//*[text()='Inpatient Ward']")
     public WebElement locationBETUL;
 
-    @FindBy(xpath = "//*[@class='nav-item identifier']")
-    public WebElement adminassertion;
-
+    //@FindBy(xpath = "//li[@class='nav-item identifier']")
+    @FindBy(css="[class='nav-item identifier']")
+    public WebElement adminLabel;
 
     @FindBy(xpath = "(//*[@id='apps']/a)[3]")
     public WebElement avtivevisits;
@@ -108,13 +102,47 @@ public class Elements {
     public WebElement merge;
 
     @FindBy(xpath = "//*[@id='user-account-menu']/li")
-    public WebElement myaccount;
+    public WebElement myAccount;
 
-    @FindBy(css = "[class='nav-item identifier']")
-    public WebElement myaccountadmin;
+    @FindBy(css="[class='icon-lock']")
+    public WebElement changePasswordButton;
+
+    @FindBy(id="cancel-button")
+    public WebElement cancelButton;
+
+
+    @FindBy(css="[class='icon-cog']")
+    public WebElement myLanguagesButton;
 
     //US2-US9-BETUL
 
+    @FindBy(id="coreapps-datamanagement-homepageLink-coreapps-datamanagement-homepageLink-extension")
+    public WebElement dataManagementButton;
+
+    @FindBy(id="coreapps-mergePatientsHomepageLink-app")
+    public WebElement mergePatient;
+
+    @FindBy(id="patient1-text")
+    public WebElement patientId1Input;
+
+    @FindBy(id="patient2-text")
+    public WebElement patientId2Input;
+
+    @FindBy(xpath= "//div[@class='float-sm-right']//span")
+    public WebElement registeredPatientId;
+
+    @FindBy(id="first-patient")
+    public WebElement selectedPatientID;
+
+    @FindBy(xpath = "//input[@value='Yes, continue'")
+    public WebElement confirmPreferredRecord;
+
+
+    @FindBy(id="confirm-button")
+    public WebElement confirmButtonPatientMerge;
+
+    @FindBy(xpath = "//div[@class='messages-container']/h1")
+    public WebElement mergingCannotBeUndoneText;
 
     @FindBy(id = "appointmentschedulingui-homeAppLink-appointmentschedulingui-homeAppLink-extension")
     public WebElement appoinmentsButton;
@@ -142,6 +170,9 @@ public class Elements {
 
 // Muhammet Elementleri
 
+    @FindBy(css = "[class='nav-item logout']>a")
+    public WebElement logOutBtn;
+
     @FindBy(xpath = "//input[@id='username']")
     public WebElement username1;
 
@@ -157,14 +188,20 @@ public class Elements {
     @FindBy(xpath = "//*[@id='coreapps-activeVisitsHomepageLink-coreapps-activeVisitsHomepageLink-extension']")
     public WebElement FindPatiRecord;
 
-    @FindBy(xpath = "//*[text()='Showing 16 to 27 of 27 entries']")
+    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[1]")
+    public WebElement findPatientRecord;
+
+    //@FindBy(xpath = "//*[text()='Showing 16 to 27 of 27 entries']")
+    @FindBy(id="patient-search-results-table_info")
     public WebElement showing;
 
     @FindBy(xpath = "//*[@id='patient-search-results-table_next']")
-    public WebElement sayfa2;
+    public WebElement patientListNextPage;
 
-    @FindBy(xpath = "//*[@id='selected-location']")
-    public WebElement displayd;
+
+
+//    @FindBy(css="[class='nav-item logout']")
+//    public WebElement logout0;
 
     @FindBy(xpath = "//div[@id='navbarSupportedContent']//li[@class='nav-item logout']/a")
     public WebElement logout;
@@ -172,16 +209,23 @@ public class Elements {
     @FindBy(xpath = "//*[@class='w-auto']")
     public WebElement giris;
 
-// muhammet Elelmentler
+    // muhammet Elementler
 
     @FindBy(css = "[class='gt-current-lang']")
     public WebElement languageS;
 
+    @FindBy(xpath="//*[@class='nturl'][1]")
+    public WebElement EN;
+
     @FindBy(xpath = "//a[@data-gt-lang='en']")
     public WebElement englishS;
 
-    @FindBy(xpath = "//a[@class='zak-button']")
-    public WebElement demobuttonS;
+    @FindBy(xpath = "//span[text()='Explore OpenMRS 2']")
+    public WebElement exploreMRS2;
+
+    @FindBy(css = "a[href='https://demo.openmrs.org/openmrs/login.htm']")
+    public WebElement openMRS2Demo;
+
 
     @FindBy(linkText="Enter the OpenMRS 2 Demo")
     public WebElement enterDemo2S;
@@ -198,8 +242,8 @@ public class Elements {
     @FindBy(id="loginButton")
     public WebElement loginButtonS;
 
-    @FindBy(xpath="(//a[@class='btn btn-default btn-lg button app big align-self-center'])[4]")
-    public WebElement Registerapatient;
+    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[4]")
+    public WebElement registerAPatient;
 
     @FindBy(name="givenName")
     public WebElement givenName;
@@ -208,7 +252,7 @@ public class Elements {
     public WebElement familyName;
 
     @FindBy(id = "next-button")
-    public WebElement nextbutton;
+    public WebElement nextButton;
 
     @FindBy(xpath = "//option[@value='M']")
     public  WebElement gender;
@@ -229,19 +273,17 @@ public class Elements {
     public WebElement address;
 
     @FindBy(id = "submit")
-    public WebElement Confirm;
+    public WebElement confirm;
 
-    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[1]")
-    public WebElement FindPatirndRecord;
+
 
     @FindBy(xpath = "//input[@class='form-control']")
-    public WebElement Search;
+    public WebElement search;
 
     @FindBy(xpath = "(//div[@class='col-11 col-lg-10'])[8]")
     public WebElement DeletePatiend;
 
-    @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[1]")
-    public WebElement FindPatientRecord;
+
 
     @FindBy(xpath = "//tr[@class='odd']")
     public WebElement one;
@@ -253,16 +295,10 @@ public class Elements {
     public WebElement text;
 
     @FindBy(xpath = "(//button[@class='confirm right'])[6]")
-    public WebElement Confirmdelete;
+    public WebElement confirmDelete;
 
     @FindBy(xpath = "//span[@class='PersonName-givenName']")
-    public WebElement patieentname;
+    public WebElement patientName;
 
 
-
-
-
-
-
-    //sefacan
 }

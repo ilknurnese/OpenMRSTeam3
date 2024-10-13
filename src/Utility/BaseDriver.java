@@ -13,35 +13,51 @@ import org.testng.annotations.BeforeClass;
 import java.time.Duration;
 
 public class BaseDriver {
-    public static Logger createlog=LogManager.getLogger();
+    public static final org.apache.logging.log4j.Logger logger4j2 = LogManager.getLogger();
+    public static Logger createLog = LogManager.getLogger();
     public static WebDriver driver;
     public static WebDriverWait wait;
 
     @BeforeClass
-    public void BaslangicIslemleri ()
-    {
-        createlog.info("logging started");
+    public void initialOperations() {
 
-        driver=new ChromeDriver();
-       createlog.info("driver is starting");
+        Elements elements= new Elements();
 
-       driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-       wait=new WebDriverWait(driver,Duration.ofSeconds(20));
+        createLog.info("logging started");
+        driver = new ChromeDriver();
+        createLog.info("driver is starting");
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
+        demoEnter();
+
+        // Artık login sayfası açıldı ve burada login işlemleri yapılabilir
+        // driver.get("https://demo.openmrs.org/openmrs/login.htm");
+
     }
+
     @AfterClass
-    public void kapanisIslemleri()
-    {
-      Tools.Bekle(3);
-      driver.quit();
-     createlog.info("loging is finished");
+    public void finishingOperations() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+        createLog.info("logging is finished");
     }
-    public void Login()
-    {
+
+    public void login() {
+
         Elements elements = new Elements();
-        driver.get("https://openmrs.org/");
-        Tools.Bekle(2);
+//        driver.get("https://demo.openmrs.org/openmrs/login.htm");
+//        Tools.wait(2);
         wait.until(ExpectedConditions.elementToBeClickable(elements.username));
         elements.username.sendKeys("admin");
         elements.password.sendKeys("Admin123");
@@ -49,4 +65,18 @@ public class BaseDriver {
         elements.login.click();
 
     }
+    public void demoEnter(){
+
+        Elements elements=new Elements();
+
+        driver.get("https://openmrs.org/");
+        driver.manage().window().maximize();
+
+        // İlk adımlar bir kere çalışsın
+        wait.until(ExpectedConditions.elementToBeClickable(elements.languageOption)).click();  // "EN" seçeneği
+        wait.until(ExpectedConditions.elementToBeClickable(elements.demoButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.openMRS2Demo)).click();   //login sayfasına gider
+    }
+
+
 }
