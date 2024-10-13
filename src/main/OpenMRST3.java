@@ -17,6 +17,8 @@ import java.util.concurrent.Executor;
 
 public class OpenMRST3 extends BaseDriver {
 
+
+
     Elements elements = new Elements();
 
     //nese
@@ -30,6 +32,8 @@ public class OpenMRST3 extends BaseDriver {
         elements.password.sendKeys(password);
         elements.location.click();
         elements.loginButton.click();
+
+        System.out.println("System Login initialized");
 
         Tools.wait(3);
     }
@@ -313,6 +317,7 @@ public class OpenMRST3 extends BaseDriver {
         return user;
     }
 
+//neşe nin satırı
 
 }
 
