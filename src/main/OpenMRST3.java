@@ -21,7 +21,7 @@ public class OpenMRST3 extends BaseDriver {
     Elements elements = new Elements();
 
     //nese
-    @Test(dataProvider = "loginData", enabled = true, priority = 1)
+    @Test(dataProvider = "loginData", enabled = false, priority = 1)
     public void US_401(String username, String password) throws IOException {
 
         Elements elements = new Elements();
@@ -52,7 +52,7 @@ public class OpenMRST3 extends BaseDriver {
         return loginInfo;
     }
 
-    @Test(enabled = true, priority = 2)
+    @Test(enabled = false, priority = 2)
     public void US_402() { //betulun testi
 
         login();
@@ -61,7 +61,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //muhammet
-    @Test(enabled = true, priority = 3)
+    @Test(enabled = false, priority = 3)
     public void Test403() {
 
         login();
@@ -75,7 +75,7 @@ public class OpenMRST3 extends BaseDriver {
 
     }
 
-    @Test(enabled = true, priority = 4)
+    @Test(enabled = false, priority = 4)
     public void US_404_() {
 
         Elements elements = new Elements();
@@ -102,7 +102,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //betul
-    @Test(enabled = true, priority = 5)
+    @Test(enabled = false, priority = 5)
     public void US_405() {
 
         login();
@@ -124,7 +124,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //yusuf
-    @Test(enabled = true, priority = 6)
+    @Test(enabled = false, priority = 6)
     public void US_406() throws IOException {
         login();
 
@@ -161,7 +161,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //sefacan
-    @Test(enabled = true, priority = 7)
+    @Test(enabled = false, priority = 7)
     public void US_407_() {
 
         Elements elements = new Elements();
@@ -179,7 +179,7 @@ public class OpenMRST3 extends BaseDriver {
 
 
     //muhammet
-    @Test(enabled = true, priority = 8)
+    @Test(enabled = false, priority = 8)
     public void Test408() {
 
         login();
@@ -200,7 +200,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //betul
-    @Test(enabled = true, priority = 9)
+    @Test(enabled = false, priority = 9)
     public void US_409() {
 
         login();
@@ -281,7 +281,8 @@ public class OpenMRST3 extends BaseDriver {
 
     }
 
-    @Test(dataProvider = "createData", enabled = false)//yusuf 10 user story
+    //yusuf
+    @Test(dataProvider = "patientData", enabled = true, priority = 10)//yusuf 10 user story
     public void US_410(String userName) throws IOException {
 
         Elements elements = new Elements();
@@ -297,16 +298,16 @@ public class OpenMRST3 extends BaseDriver {
         Assert.assertTrue(elements.erorMesage.getText().contains("Your computer is not set to the right time zone."), "Mesaj bulunamadi");
         System.out.println(elements.erorMesage.getText());
         TakesScreenshot ts = (TakesScreenshot) driver;
-        File shot = new File("target/screnshott/incorectSystem.jpg");
+        File shot = new File("target/screenshot/incorectSystem.jpg");
         File picture = ts.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(picture, shot);
         elements.logo.click();
     }
 
     @DataProvider
-    public Object[] createData() {
-        Object[] user = {"yusuf ucucu"};
-        return user;
+    public Object[] patientData() {
+        Object[] userName = {"We_Team3"};
+        return userName;
     }
 
 //neşe nin satırı
