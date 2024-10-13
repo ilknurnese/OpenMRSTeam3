@@ -18,11 +18,10 @@ import java.util.concurrent.Executor;
 public class OpenMRST3 extends BaseDriver {
 
 
-
     Elements elements = new Elements();
 
     //nese
-    @Test(dataProvider = "loginData", enabled = false, priority = 1)
+    @Test(dataProvider = "loginData", enabled = true, priority = 1)
     public void US_401(String username, String password) throws IOException {
 
         Elements elements = new Elements();
@@ -53,7 +52,7 @@ public class OpenMRST3 extends BaseDriver {
         return loginInfo;
     }
 
-    @Test(enabled = false, priority = 2)
+    @Test(enabled = true, priority = 2)
     public void US_402() { //betulun testi
 
         login();
@@ -62,7 +61,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //muhammet
-    @Test(enabled = false, priority = 3)
+    @Test(enabled = true, priority = 3)
     public void Test403() {
 
         login();
@@ -76,7 +75,7 @@ public class OpenMRST3 extends BaseDriver {
 
     }
 
-    @Test(enabled = false, priority = 4)
+    @Test(enabled = true, priority = 4)
     public void US_404_() {
 
         Elements elements = new Elements();
@@ -103,7 +102,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //betul
-    @Test(enabled = false, priority = 5)
+    @Test(enabled = true, priority = 5)
     public void US_405() {
 
         login();
@@ -125,7 +124,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //yusuf
-    @Test(enabled = false, priority = 6)
+    @Test(enabled = true, priority = 6)
     public void US_406() throws IOException {
         login();
 
@@ -162,7 +161,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //sefacan
-    @Test(enabled = false, priority = 7)
+    @Test(enabled = true, priority = 7)
     public void US_407_() {
 
         Elements elements = new Elements();
@@ -180,7 +179,7 @@ public class OpenMRST3 extends BaseDriver {
 
 
     //muhammet
-    @Test(enabled = false, priority = 8)
+    @Test(enabled = true, priority = 8)
     public void Test408() {
 
         login();
@@ -285,15 +284,8 @@ public class OpenMRST3 extends BaseDriver {
     @Test(dataProvider = "createData", enabled = false)//yusuf 10 user story
     public void US_410(String userName) throws IOException {
 
-        //Elements elements = null;
-        elements.languageOption.click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.english)).click();
-        elements.demoButton.click();
-        elements.enterMrs2Demo.click();
-        elements.username.sendKeys("admin");
-        elements.password.sendKeys("Admin123");
-        elements.location.click();
-        elements.loginButton.click();
+        Elements elements = new Elements();
+        login();
 
         //surdan sonrasi test incerect sisteme ait
         elements.appoinmentsButton.click();
