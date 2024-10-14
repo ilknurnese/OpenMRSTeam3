@@ -18,13 +18,13 @@ public class OpenMRST3 extends BaseDriver {
     Elements elements = new Elements();
 
     //nese
-    @Test(dataProvider = "loginData", enabled = true, priority = 1)
+    @Test(dataProvider = "invalidLoginData", enabled = true, priority = 1)
     public void US_401(String username, String password) throws IOException {
 
         Elements elements = new Elements();
 
-        // Kullanıcı adı ve şifre giriş işlemi
         wait.until(ExpectedConditions.elementToBeClickable(elements.username));
+        elements.username.sendKeys(username);
         elements.password.sendKeys(password);
         elements.location.click();
         elements.loginButton.click();
@@ -35,22 +35,23 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     @DataProvider
-    Object[][] loginData() {
+    Object[][] invalidLoginData() {
 
-        Object[][] loginInfo;
-        loginInfo = new Object[][]{
+        Object[][] invalidLoginData;
+        invalidLoginData = new Object[][]{
                 {"", ""},
                 {"", "wrong_password"},
                 {"admin", ""},
                 {"admin", "wrong_password"},
                 {"", "Admin123"},
-                {"admin", "Admin123"},
+                //{"admin", "Admin123"},
         };
-        return loginInfo;
+        return invalidLoginData;
     }
 
+    //betul
     @Test(enabled = true, priority = 2)
-    public void US_402() { //betulun testi
+    public void US_402() {
 
         login();
         Elements elements = new Elements();
@@ -61,29 +62,34 @@ public class OpenMRST3 extends BaseDriver {
     @Test(enabled = true, priority = 3)
     public void Test403() {
 
-        login();
+
+        Elements elements = new Elements();
+       // login();
         SoftAssert softAssert = new SoftAssert();
-        elements = new Elements();
+
         wait.until(ExpectedConditions.visibilityOf(elements.logout));
-
-        softAssert.assertTrue(elements.logout.isDisplayed(), "Logout is not visible");
-
         wait.until(ExpectedConditions.elementToBeClickable(elements.logout)).click();
 
+        softAssert.assertTrue(elements.logout.isDisplayed(), "Logout is not visible");
         softAssert.assertTrue(elements.giris.isDisplayed(), "You are not on home page");
         softAssert.assertAll();
 
+        Assert.assertTrue(elements.logout.isDisplayed(),"Logout is not visible00");
+        Assert.assertTrue(elements.giris.isDisplayed(),"You are not on home page");
+
     }
 
+    //sefacan
     @Test(enabled = true, priority = 4)
     public void US_404_() {
 
         Elements elements = new Elements();
+
         login();
 
         wait.until(ExpectedConditions.elementToBeClickable(elements.registerAPatient)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(elements.givenName)).sendKeys("sefacan");
-        elements.familyName.sendKeys("basoglu");
+        wait.until(ExpectedConditions.elementToBeClickable(elements.givenName)).sendKeys("Big_Team3");
+        elements.familyName.sendKeys("Brillant");
         elements.nextButton.click();
         elements.gender.click();
         elements.nextButton.click();
@@ -92,20 +98,20 @@ public class OpenMRST3 extends BaseDriver {
         elements.birthdateMonth6.click();
         elements.birthdateYear.sendKeys("2004");
         elements.nextButton.click();
-        elements.address.sendKeys("elma sokak");
+        elements.address.sendKeys("Elm Street");
         elements.nextButton.click();
         elements.nextButton.click();
         elements.nextButton.click();
         elements.confirm.click();
-        Assert.assertEquals(elements.patientName.getText(), "sefacan", "Hasta kaydedilemedi");
+        Assert.assertEquals(elements.patientName.getText(), "Big_Team3", "Hasta kaydedilemedi");
 
     }
 
-    //betul
+    //alper
     @Test(enabled = true, priority = 5)
     public void US_405() {
 
-        login();
+        //login();
         Elements elements = new Elements();
 
         Assert.assertTrue(elements.adminLabel.getText().contains("admin"), "login olunmamıştır");
@@ -266,14 +272,10 @@ public class OpenMRST3 extends BaseDriver {
 
         Assert.assertTrue(elements.mergingCannotBeUndoneText.isDisplayed(),"Error");
 
-        JavascriptExecutor js= (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();",elements.confirmButtonPatientMerge);
-        js.executeScript("arguments[0].scrollIntoView(true);",elements.confirmButtonPatientMerge);
-        js.executeScript("windows.scrollBy(100,100)",elements.confirmButtonPatientMerge);
-
 //        driver.switchTo().frame(0);
-        wait.until(ExpectedConditions.elementToBeClickable(elements.selectedPatientID)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.selectedFirstPatient)).click();
 //        driver.switchTo().parentFrame();
+        wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
         wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
 
         Assert.assertTrue(elements.registeredPatientId.isDisplayed(),"Error");

@@ -56,8 +56,8 @@ public class BaseDriver {
     public void login() {
 
         Elements elements = new Elements();
-//        driver.get("https://demo.openmrs.org/openmrs/login.htm");
-//        Tools.wait(2);
+        driver.get("https://demo.openmrs.org/openmrs/login.htm");
+        Tools.wait(2);
         wait.until(ExpectedConditions.elementToBeClickable(elements.username));
         elements.username.sendKeys("admin");
         elements.password.sendKeys("Admin123");

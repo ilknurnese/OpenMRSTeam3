@@ -80,6 +80,10 @@ public class Elements {
     @FindBy(xpath= "//div[@class='float-sm-right']//span")
     public WebElement registeredPatientId;
 
+    //@FindBy(xpath = "(//div[@id='first-patient']//div//h3)[1]")
+
+    public WebElement selectedFirstPatient;
+
     @FindBy(id="first-patient")
     public WebElement selectedPatientID;
 
@@ -126,8 +130,11 @@ public class Elements {
     @FindBy(xpath = "//*[@id='patient-search-results-table_next']")
     public WebElement patientListNextPage;
 
-
-    @FindBy(xpath = "//div[@id='navbarSupportedContent']//li[@class='nav-item logout']/a")
+    //@FindBy(xpath = "//div[@id='navbarSupportedContent']//li[@class='nav-item logout']/a")
+    //@FindBy(xpath="//a[normalize-space()='Logout']")
+    //@FindBy(xpath = "//a[contains(text(), 'Logout')]")
+    @FindBy(css="[class='nav-item logout']")
+    //@FindBy(css = "[class='icon-signout small']")
     public WebElement logout;
 
     @FindBy(xpath = "//*[@class='w-auto']")
@@ -135,7 +142,6 @@ public class Elements {
 
     @FindBy(css = "a[href='https://demo.openmrs.org/openmrs/login.htm']")
     public WebElement openMRS2Demo;
-
 
     @FindBy(xpath = "(//a[@class='btn btn-default btn-lg button app big align-self-center'])[4]")
     public WebElement registerAPatient;
