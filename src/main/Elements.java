@@ -160,7 +160,7 @@ public class Elements {
     @FindBy(xpath = "(//div[@class='note error'])[2]")
     public WebElement erorMesage;
 
-    @FindBy(xpath = "//td[text()='yusuf ucucu']")
+    @FindBy(xpath = "(//tbody/tr/td[2])[1]")
     public WebElement patientid;
 
     @FindBy(css = "[class='logo']")
