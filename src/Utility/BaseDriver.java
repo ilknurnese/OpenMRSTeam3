@@ -78,5 +78,4 @@ public class BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(elements.openMRS2Demo)).click();   //login sayfasına gider
     }
 
-
 }

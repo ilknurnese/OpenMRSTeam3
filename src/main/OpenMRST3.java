@@ -18,7 +18,7 @@ public class OpenMRST3 extends BaseDriver {
     Elements elements = new Elements();
 
     //nese
-    @Test(dataProvider = "loginData", enabled = false, priority = 1)
+    @Test(dataProvider = "loginData", enabled = true, priority = 1)
     public void US_401(String username, String password) throws IOException {
 
         Elements elements = new Elements();
@@ -49,7 +49,7 @@ public class OpenMRST3 extends BaseDriver {
         return loginInfo;
     }
 
-    @Test(enabled = false, priority = 2)
+    @Test(enabled = true, priority = 2)
     public void US_402() { //betulun testi
 
         login();
@@ -58,7 +58,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //muhammet
-    @Test(enabled = false, priority = 3)
+    @Test(enabled = true, priority = 3)
     public void Test403() {
 
         login();
@@ -72,7 +72,7 @@ public class OpenMRST3 extends BaseDriver {
 
     }
 
-    @Test(enabled = false, priority = 4)
+    @Test(enabled = true, priority = 4)
     public void US_404_() {
 
         Elements elements = new Elements();
@@ -99,7 +99,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //betul
-    @Test(enabled = false, priority = 5)
+    @Test(enabled = true, priority = 5)
     public void US_405() {
 
         login();
@@ -121,7 +121,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //yusuf
-    @Test(enabled = false, priority = 6)
+    @Test(enabled = true, priority = 6)
     public void US_406() throws IOException {
         login();
 
@@ -158,7 +158,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //sefacan
-    @Test(enabled = false, priority = 7)
+    @Test(enabled = true, priority = 7)
     public void US_407_() {
 
         Elements elements = new Elements();
@@ -175,7 +175,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //muhammet
-    @Test(enabled = false, priority = 8)
+    @Test(enabled = true, priority = 8)
     public void Test408() {
 
         login();
@@ -196,7 +196,7 @@ public class OpenMRST3 extends BaseDriver {
     }
 
     //betul
-    @Test(enabled = false, priority = 9)
+    @Test(enabled = true, priority = 9)
     public void US_409() {
 
         login();
