@@ -81,13 +81,14 @@ public class Elements {
     public WebElement registeredPatientId;
 
     //@FindBy(xpath = "(//div[@id='first-patient']//div//h3)[1]")
-
+    @FindBy(xpath = "//div[@class='patient center']")
     public WebElement selectedFirstPatient;
 
     @FindBy(id="first-patient")
     public WebElement selectedPatientID;
 
-    @FindBy(xpath = "//input[@value='Yes, continue'")
+    @FindBy(xpath = "//input[@class='button confirm']")
+    //@FindBy(xpath = "//input[@value='Yes, continue'")
     public WebElement confirmPreferredRecord;
 
 

@@ -263,11 +263,6 @@ public class OpenMRST3 extends BaseDriver {
 
         wait.until(ExpectedConditions.elementToBeClickable(elements.confirmButtonPatientMerge)).click();
 
-        elements.confirmButtonPatientMerge.click();
-        elements.confirmButtonPatientMerge.click();
-
-        wait.until(ExpectedConditions.elementToBeClickable(elements.confirmButtonPatientMerge)).click();
-
         wait.until(ExpectedConditions.elementToBeClickable(elements.mergingCannotBeUndoneText));
 
         Assert.assertTrue(elements.mergingCannotBeUndoneText.isDisplayed(),"Error");
@@ -277,6 +272,7 @@ public class OpenMRST3 extends BaseDriver {
 //        driver.switchTo().parentFrame();
         wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
         wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
+
 
         Assert.assertTrue(elements.registeredPatientId.isDisplayed(),"Error");
     }
