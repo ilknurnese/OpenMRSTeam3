@@ -65,9 +65,12 @@ public class OpenMRST3 extends BaseDriver {
         SoftAssert softAssert = new SoftAssert();
         elements = new Elements();
         wait.until(ExpectedConditions.visibilityOf(elements.logout));
-        softAssert.assertTrue(elements.logout.isDisplayed(), "Aradığınız bulunmamaktadır");
-        elements.logout.click();
-        softAssert.assertTrue(elements.giris.isDisplayed(), "Giriş sayfasına gelemediniz");
+
+        softAssert.assertTrue(elements.logout.isDisplayed(), "Logout is not visible");
+
+        wait.until(ExpectedConditions.elementToBeClickable(elements.logout)).click();
+
+        softAssert.assertTrue(elements.giris.isDisplayed(), "You are not on home page");
         softAssert.assertAll();
 
     }
