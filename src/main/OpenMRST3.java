@@ -12,11 +12,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.Executor;
-
 
 public class OpenMRST3 extends BaseDriver {
-
 
     Elements elements = new Elements();
 
@@ -177,7 +174,6 @@ public class OpenMRST3 extends BaseDriver {
 
     }
 
-
     //muhammet
     @Test(enabled = false, priority = 8)
     public void Test408() {
@@ -278,7 +274,6 @@ public class OpenMRST3 extends BaseDriver {
         wait.until(ExpectedConditions.elementToBeClickable(elements.confirmPreferredRecord)).click();
 
         Assert.assertTrue(elements.registeredPatientId.isDisplayed(),"Error");
-
     }
 
     //yusuf
@@ -289,14 +284,14 @@ public class OpenMRST3 extends BaseDriver {
         login();
 
         //surdan sonrasi test incerect sisteme ait
-        elements.appoinmentsButton.click();
-        elements.manageAppoiments.click();
-        elements.searchhPatiens.sendKeys(userName);
+        elements.appointmentsButton.click();
+        elements.manageAppointments.click();
+        elements.searchPatients.sendKeys(userName);
 
-        elements.patientid.click();
+        elements.patientId.click();
         // wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='note error'])[2]")));
-        Assert.assertTrue(elements.erorMesage.getText().contains("Your computer is not set to the right time zone."), "Mesaj bulunamadi");
-        System.out.println(elements.erorMesage.getText());
+        Assert.assertTrue(elements.errorMessage.getText().contains("Your computer is not set to the right time zone."), "Mesaj bulunamadi");
+        System.out.println(elements.errorMessage.getText());
         TakesScreenshot ts = (TakesScreenshot) driver;
         File shot = new File("target/screenshot/incorectSystem.jpg");
         File picture = ts.getScreenshotAs(OutputType.FILE);
